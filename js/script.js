@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Модальное окно ("Узнать подробнее")
 
     let learnMore = document.querySelectorAll('.description-btn');
-    
+
     for (let i = 0; i < learnMore.length; i++) {
         learnMore[i].addEventListener('click', function () {
             overlay.style.display = 'block';
@@ -113,11 +113,33 @@ window.addEventListener('DOMContentLoaded', function () {
             document.body.style.overflow = 'hidden';
         })
 
-    close.addEventListener('click', function () {
-        overlay.style.display = 'none';
-        more.classList.remove('more-splash');
-        document.body.style.overflow = '';
-    })
-}
+        close.addEventListener('click', function () {
+            overlay.style.display = 'none';
+            more.classList.remove('more-splash');
+            document.body.style.overflow = '';
+        })
+    }
+
+    // создаём класс Options со свойствами
+    class Options {
+        constructor(height, width, bg, fontSize, textAlign) {
+            this.height = height;
+            this.width = width;
+            this.bg = bg;
+            this.fontSize = fontSize;
+            this.textAlign = textAlign;
+        }
+
+        createDiv() {
+            let elem = document.createElement('div');
+            document.body.append(elem);
+            let param = `height:${this.height}px; width:${this.width}px; background-color:${this.bg}; font-size:${this.fontSize}px; text-align:${this.textAlign}`;
+            elem.style.cssText = param;
+        }
+    }
+
+    const item = new Options(500, 500, "blue", 14, "center");
+
+    item.createDiv();
 
 });
